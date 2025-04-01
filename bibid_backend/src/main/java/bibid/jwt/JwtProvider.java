@@ -6,6 +6,9 @@ import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.apache.catalina.core.ApplicationContext;
+import org.apache.naming.factory.BeanFactory;
+import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
@@ -17,6 +20,7 @@ import java.util.Date;
 // JWT를 발행하고 받아온 JWT가 유효한지 검사하는 클래스
 @Component
 public class JwtProvider {
+
 
     private static final String SECRET_KEY = "Yml0Y2FtcGRldm9wczEydG9kb2Jvb3RhcHA1MDJyZWFjdHNwcmluZ2Jvb3Q=";
 

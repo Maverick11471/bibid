@@ -33,6 +33,7 @@ import java.util.Map;
 
 public class NaverServiceImpl {
 
+
     private final MemberRepository memberRepository;
     private final JwtProvider jwtProvider;
     private final UserDetailsService userDetailsService;

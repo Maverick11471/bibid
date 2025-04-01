@@ -1,25 +1,29 @@
-package bibid.config;
+package com.taekwandoback.config;
 
+import java.util.Properties;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
-import java.util.Properties;
-
 @Configuration
 public class MailConfig {
 
-    // SMTP 설정
+    @Value("${spring.mail.username}")
+    private String username;
+
+    @Value("${spring.mail.password}")
+    private String password;
+
     @Bean
-    public JavaMailSender MailSender() {
+    public JavaMailSender mailSender(){
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.gmail.com");
         mailSender.setPort(587);
 
-        // 고정된 이메일 주소와 비밀번호 사용
-        mailSender.setUsername("bibidcrown@gmail.com"); // SMTP 인증용 이메일
-        mailSender.setPassword("fgukxychnfrcbrvs"); // SMTP 인증용 비밀번호
+        mailSender.setUsername(username); // SMTP 인증용 이메일
+        mailSender.setPassword(password); // SMTP 인증용 비밀번호
 
         Properties props = mailSender.getJavaMailProperties();
         props.put("mail.transport.protocol", "smtp");
@@ -29,5 +33,4 @@ public class MailConfig {
 
         return mailSender;
     }
-
 }
